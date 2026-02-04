@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="navbar" id="main-nav" style="display: none;">
+        <div id="user-nav-links" style="display:none;">
+            <a href="#dashboard" id="nav-dashboard" class="nav-link active">Dashboard</a>
+            <a href="#submit-complaint" id="nav-submit" class="nav-link">Submit Complaint</a>
+            <a href="#my-complaints" id="nav-my-complaints" class="nav-link">My Complaints</a>
+        </div>
+        <div id="admin-nav-links" style="display:none;">
+            <a href="#admin-dashboard" id="nav-admin-dashboard" class="nav-link">Admin Dashboard</a>
+            <a href="#reports" id="nav-reports" class="nav-link">Reports</a>
+        </div>
+        <a href="#logout" id="nav-logout">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div id="login-view" class="view active">
+            <div class="container">
+                <form class="login-form">
+                    <h2>Complaint Management System</h2>
+                    <h3>Student/Admin Login</h3>
+                    <div class="form-group">
+                        <label for="login-username">Username/Email</label>
+                        <input type="text" id="login-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="footer-links">
+                        <a href="#">Forgot Password?</a>
+                        <a href="#register" id="show-register">Don't have an account? Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="register-view" class="view">
+            <div class="container">
+                <form class="register-form">
+                    <h2>Create New Account</h2>
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" name="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="footer-links">
+                        <a href="#login" id="show-login">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="dashboard-view" class="view">
+            <div class="container">
+                <h2 id="dashboard-greeting">Welcome!</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <h4>Total Complaints</h4>
+                        <p id="stat-total">0</p>    
+                    </div>
+                    <div class="stat-box">
+                        <h4>Pending</h4>
+                        <p id="stat-pending">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Resolved</h4>
+                        <p id="stat-resolved">0</p>
+                    </div>
+                </div>
+                <h3>Recent Complaints (Your Submissions)</h3>
+                <table class="complaint-table">
+                    <thead>
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Date Submitted</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="complaints-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="submit-complaint-view" class="view">
+            <div class="container">
+                <h2>Submit a New Complaint</h2>
+                <form class="complaint-form">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="hostel-maintenance">Hostel Maintenance</option>
+                            <option value="mess-food">Mess Food</option>
+                            <option value="academic">Academic Issue</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="attachment">Attach Proof (Optional)</label>
+                        <input type="file" id="attachment" name="attachment">
+                    </div>
+                    <button type="submit" class="btn">Submit Complaint</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="my-complaints-view" class="view">
+            <div class="container">
+                <h2>My Submitted Complaints</h2>
+                <table class="complaint-table">
+                    <thead>
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Subject</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Date Submitted</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="my-complaints-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="admin-dashboard-view" class="view">
+            <div class="container">
+                <h2>Admin Complaint Management</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <h4>Total Complaints</h4>
+                        <p id="admin-stat-total">0</p>    
+                    </div>
+                    <div class="stat-box">
+                        <h4>Pending</h4>
+                        <p id="admin-stat-pending">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Resolved</h4>
+                        <p id="admin-stat-resolved">0</p>
+                    </div>
+                </div>
+                <h3>All Complaints</h3>
+                <table class="complaint-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Email</th>
+                            <th>Subject</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-complaints-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="reports-view" class="view">
+            <div class="container">
+                <h2>Complaint Reports</h2>
+                <h3>Category Breakdown</h3>
+                <table class="complaint-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Total Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reports-category-body">
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 30px;">Status Overview</h3>
+                <p>Total: <strong id="report-total">0</strong></p>
+                <p>Pending: <strong id="report-pending">0</strong></p>
+                <p>Resolved: <strong id="report-resolved">0</strong></p>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
